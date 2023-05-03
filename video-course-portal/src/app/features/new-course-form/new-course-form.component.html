@@ -16,14 +16,14 @@
                             <label class="mb-2">Description : </label>
                             <p>* required</p>
                         </div>
-                        <textarea class="mb-2" rows="6" formControlName="course_description" placeholder="Add description" required></textarea>
+                        <textarea class="mb-2" rows="7" formControlName="course_description" placeholder="Add description" required></textarea>
                     </div>
                     <div class="form-group mb-3">
                         <div class="d-flex">
                             <label class="mb-2 pe-3">Duration : </label>
                             <p class="ps-5">* required</p>
                         </div>
-                        <input class="mb-2 minutes" type="number"  formControlName="course_duration" required placeholder="minutes" [(ngModel)]="numberValue"/>
+                        <input class="mb-2 minutes" type="text"  formControlName="course_duration" required placeholder="minutes"/>
                         <span class="hours">{{numberValue | timePipe}}</span>
                     </div>
                     <div class="form-group mb-3">

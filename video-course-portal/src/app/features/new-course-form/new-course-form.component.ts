@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,FormControl } from '@angular/forms';
-import { UserServiceService } from 'src/app/core/services/user-service.service';
+import { UserServiceService } from 'src/app/core/services/users/user-service.service';
 import { UserType, courseType } from 'src/app/core/models/userType';
+import { values } from 'lodash';
 
 @Component({
   selector: 'app-new-course-form',
@@ -13,26 +14,28 @@ import { UserType, courseType } from 'src/app/core/models/userType';
 export class NewCourseFormComponent implements OnInit{
   public userName!:string;
   public editFlag:boolean=false;
-  public numberValue:number=0;
+  public numberValue:string="";
   public data:courseType={
       course_id:"",
       course_title:"",
       course_description:"",
-      course_duration:0,
+      course_duration:"",
       course_date:"",
       course_authors:"",
   };
   constructor(private router:Router,private route:ActivatedRoute,private _userService:UserServiceService,private cdr:ChangeDetectorRef) {
   }
   ngOnInit(): void {
-    this.userName=this.router.url.split('/')[1]
-    let routeData=this.route.snapshot.params;
-    if(Object.keys(routeData).length!==0){
-      Object.assign(this.data,routeData);
-      console.log(this.data)
-      this.newCourseForm.setValue(this.data);
-      this.editFlag=true;
+    this.userName=this._userService.sessionUser;
+    console.log(this.route.params)
+    let id=this.route.snapshot.paramMap.get('id');
+    if(id){
+      let data=this._userService.getCourseById(id)
+      console.log("edited data:",data);
+      if(data) this.newCourseForm.setValue(data);
+      console.warn("edited data in form ",this.newCourseForm.value)
     }
+    this.numberValue=this.newCourseForm.value.course_duration;
   }
 
   newCourseForm=new FormGroup({
@@ -66,7 +69,7 @@ export class NewCourseFormComponent implements OnInit{
 
   cancelCourse(){
     this.newCourseForm.reset();
-    this.router.navigate(['../courses'],{relativeTo:this.route});
+    this.router.navigate(['../../courses'],{relativeTo:this.route});
   }
 
 

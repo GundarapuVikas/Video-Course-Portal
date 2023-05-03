@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormGroup,FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserServiceService } from 'src/app/core/services/user-service.service';
+import { UserServiceService } from 'src/app/core/services/users/user-service.service';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit{
     if(loggedUser){
       if(this.invalidFlag) this.invalidFlag=false
       let userName=this.loginForm.value.email.split('@')[0];
-      this.router.navigate([`${userName}/courses`]);
+      this.router.navigate([`${userName}`]);
     }
     else{
       this.invalidFlag=true;

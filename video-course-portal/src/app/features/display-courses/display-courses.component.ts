@@ -1,7 +1,7 @@
 import { Component, OnInit, ChangeDetectionStrategy, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router, RoutesRecognized } from '@angular/router';
 import { UserType, courseType } from 'src/app/core/models/userType';
-import { UserServiceService } from 'src/app/core/services/user-service.service';
+import { UserServiceService } from 'src/app/core/services/users/user-service.service';
 
 @Component({
   selector: 'app-display-courses',
@@ -13,14 +13,12 @@ export class DisplayCoursesComponent implements OnInit {
   public user!:string;
   public courses:courseType[]=[];
   public loadFlag:boolean=true;
-  public active_user:any;
   public getCourses():void{
-    this.courses=(this.active_user?.courses.slice(0,4) || []);
+    this.courses=this._userService.courses;
   }
   constructor(private router:Router,private route:ActivatedRoute,private _userService:UserServiceService,private cdr:ChangeDetectorRef) {}
   ngOnInit(): void {
-    this.user=this.router.url.split('/')[1];
-    this.active_user=this._userService.getUsers().find(user=>user.email.match(this.user))
+    this.user=this._userService.sessionUser;
     this.getCourses();
   }
 
@@ -30,18 +28,21 @@ export class DisplayCoursesComponent implements OnInit {
   }
 
   editCourse=(course:courseType):void=>{
-    this.router.navigate(['../new-course',course],{relativeTo:this.route});
+    // this.router.navigate(['../new-course',course],{relativeTo:this.route});
+    this.router.navigate([`../new-course/${course.course_id}`],{relativeTo:this.route});
   }
   deleteCourse=(course:courseType):void=>{
-    let idx:number=this.active_user?.courses.findIndex((c:courseType)=>c.course_id===course.course_id);
-    this.active_user?.courses.splice(idx,1);
+    this._userService.deleteCourseById(course.course_id);
     this.getCourses();
+    
   }
 
   load(){
-    this.courses=this.active_user.courses;
-    console.log(this.active_user)
-    this.loadFlag=false;
+    this._userService.loadCourses();
+    this.courses=[
+      ...this._userService.courses
+    ]
+    console.log("need to load")
   }
 
   renderDisplayPage(){

@@ -1,7 +1,6 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserType, courseType } from 'src/app/core/models/userType';
-import { UserServiceService } from 'src/app/core/services/user-service.service';
+import { Router } from '@angular/router';
+import { courseType } from 'src/app/core/models/userType';
 
 @Component({
   selector: 'app-course',

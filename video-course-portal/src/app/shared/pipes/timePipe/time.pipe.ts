@@ -5,8 +5,10 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TimePipe implements PipeTransform {
 
-  transform(duration: number): string {
-    return duration===0?"":Math.floor(duration/60)+"hr "+(duration%60)+"min"
+  transform(duration: string): string {
+    let minutes=Number(duration)
+    console.log("minutes: ",minutes)
+    return Math.floor(minutes/60)+"hr "+(minutes%60)+"min"
   }
 
 }
