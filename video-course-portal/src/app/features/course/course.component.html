@@ -1,0 +1,21 @@
+<div class="card">
+    <div class="card-body">
+        <div class="card-title d-flex">
+            <h3>{{course.course_title}}</h3>
+            <div class="date-time-info d-flex">
+                <p><i class="fa fa-clock-o"></i>  {{course.course_duration | timePipe}}</p>
+                <p><i class="fa fa-calendar" aria-hidden="true"></i>  {{course.course_date | datePipe}}</p>
+            </div>
+        </div>
+        <div class="card-text d-flex">
+            <div class="description">
+                    {{course.course_description}}
+            </div>
+            <div class="course-btns d-flex">
+                <button class="btn my-btn-primary btn-sm" (click)="editCourse(course)"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn my-btn-primary btn-sm" (click)="deleteCourse(course)"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{renderCourseItem()}}

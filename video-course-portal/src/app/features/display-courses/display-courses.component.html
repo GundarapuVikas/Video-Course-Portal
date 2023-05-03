@@ -1,0 +1,23 @@
+<div class="display-container d-flex flex-column">
+    <div class="searchbar d-flex ">
+        <input type="search" class="form-control" placeholder="Type to Search" aria-label="Search" aria-describedby="search-addon" />
+    <button type="button" class="btn my-btn-success btn-sm">Search</button>
+    </div>
+    <div class="addCourse">
+        <button class="btn my-btn-primary" (click)="addCourse()"><i class="fa fa-plus-circle fa-sm"></i>  Add course</button>
+    </div>
+    <div class="course-list-container" *ngIf="courses.length;else noCourses">
+        <div *ngFor="let course of courses">
+            <app-course [course]="course" [editCourse]="editCourse" [deleteCourse]="deleteCourse"></app-course>
+        </div>
+        <div class="load-card card align-items-center p-2" *ngIf="loadFlag">
+            <a class="text text-primary" (click)="load()">Load More</a>
+        </div>
+    </div>
+    <ng-template #noCourses>
+        <div class="no-course">
+            <h1>No courses added</h1>
+        </div>
+    </ng-template>
+</div>
+{{renderDisplayPage()}}

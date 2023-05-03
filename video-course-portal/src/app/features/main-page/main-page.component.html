@@ -1,0 +1,10 @@
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a routerLink="courses" routerLinkActive="active" class="nav-link">Courses</a></li>
+        <li class="breadcrumb-item" *ngIf="newCourseFlag"><a routerLink="new-course" routerLinkActive="active" class="nav-link">New Course</a></li>
+
+    </ol>
+</nav>
+<router-outlet></router-outlet>
+{{renderMainPage()}}
+

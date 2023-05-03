@@ -1,0 +1,27 @@
+.nav{
+    border:1px solid blue;
+}
+
+.nav-item{
+    border:1px solid yellow;
+}
+
+.active{
+    font-weight: bold;
+    color:black;
+}
+a{
+    color: gray;
+}
+
+nav{
+    border-bottom: 1px solid gray;
+    top:68px;
+    padding:10px 0px 0px 60px;
+    Width:100%;
+}
+
+
+li:not(:first-child){
+    width:8rem;
+}
