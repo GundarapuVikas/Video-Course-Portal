@@ -23,7 +23,7 @@
                             <label class="mb-2 pe-3">Duration : </label>
                             <p class="ps-5">* required</p>
                         </div>
-                        <input class="mb-2 minutes" type="text"  formControlName="course_duration" required placeholder="minutes"/>
+                        <input class="mb-2 minutes" type="text"  formControlName="course_duration" required placeholder="minutes" [(ngModel)]="numberValue"/>
                         <span class="hours">{{numberValue | timePipe}}</span>
                     </div>
                     <div class="form-group mb-3">

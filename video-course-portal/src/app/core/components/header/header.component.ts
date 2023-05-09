@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RoutesRecognized } from '@angular/router';
+import { Router, RoutesRecognized } from '@angular/router';
 import { UserServiceService } from '../../services/users/user-service.service';
 
 @Component({
@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit{
     
   }
   ngOnInit(): void {
-    //this is used when we try to access componennts that are not in router outlet 
     this.setUser();
   }
 
@@ -24,7 +23,6 @@ export class HeaderComponent implements OnInit{
         let tempUser=this.user;
         this.user=data.state.root.firstChild?.params['userName'];
         this._userService.sessionUser=this.user;
-        console.log("session user:",this._userService.sessionUser)
         if(tempUser!==this.user) this.cdr.detectChanges();
       }
     })
@@ -34,9 +32,8 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['login']);
   }
 
-  demo(){
+  renderHeader(){
     console.log("header re-render");
   }
-  
-  
+
 }

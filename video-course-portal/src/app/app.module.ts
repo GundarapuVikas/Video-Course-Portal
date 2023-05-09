@@ -30,7 +30,7 @@ import { TimePipe } from './shared/pipes/timePipe/time.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

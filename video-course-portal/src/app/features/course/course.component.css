@@ -45,11 +45,27 @@ i{
     font-size:small;
 }
 
-/* .modal-backdrop {
-    background-color: rgba(0, 0, 0, 0.5);
-    cursor: not-allowed;
-  }
-.modal{
-    width: 10rem;
-    top:25%;
-} */
+.btn:hover{
+    color:white;
+}
+
+.my-btn-success{
+    background-color: #64af30;
+    
+}
+
+.modal-backdrop-dark {
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(4px);
+}
+
+
+.close{
+    color: black;
+    opacity: 1;
+    background: none;
+    font-size: 2rem;
+    margin-right:20px;
+    cursor: pointer;
+}
+  

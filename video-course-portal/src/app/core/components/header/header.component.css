@@ -2,34 +2,13 @@
     background:#303240;
     color: #FFFFFF;
     display:flex;
-    padding:20px 40px;
-    /* position: relative; */
-    /* top:0; */
+    padding:15px 40px;
 }
 .header .title{ 
     display: flex;
-    padding:0px 20px;
-    gap:10px;
+    padding:0px 15px;
+    gap:5px;
 }
-.header .title .logo{
-    box-sizing: border-box;
-    border-color: #979797;
-    border-width: 2px;
-    border-style: solid;
-    height: 28px;
-    width: 28px;
-    border-radius: 50%;
-}
-.header .title .logo .play_logo{
-    background-image: linear-gradient(141deg, #0079AD 11%, #B4D084 100%);
-	transform: rotate(-270deg);
-	border-radius: 1px;
-	background-color: #D8D8D8;
-    height:100%;
-    width:100%;
-}
-
-
 
 .header .title .name{
 	font-size: 18px;
@@ -43,4 +22,17 @@
 
 .userActions>*{
     cursor: pointer;
+}
+
+.material-icons.play-icon{
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    background-image: linear-gradient(141deg, #0079AD 11%, #B4D084 100%);
+    background-clip: text;
+    color: transparent;
+}
+
+.logo{
+    font-size: 26px;
 }

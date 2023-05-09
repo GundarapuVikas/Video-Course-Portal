@@ -1,4 +1,3 @@
-
 import { Component,ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
@@ -8,7 +7,7 @@ import { Component,ChangeDetectionStrategy } from '@angular/core';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class FooterComponent {
-  demo(){
+  renderFooter(){
     console.log('footer re-render')
   }
 }

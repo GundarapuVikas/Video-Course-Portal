@@ -2,8 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup,FormControl } from '@angular/forms';
 import { UserServiceService } from 'src/app/core/services/users/user-service.service';
-import { UserType, courseType } from 'src/app/core/models/userType';
-import { values } from 'lodash';
+import { courseType } from 'src/app/core/models/userType';
 
 @Component({
   selector: 'app-new-course-form',
@@ -12,9 +11,10 @@ import { values } from 'lodash';
   changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class NewCourseFormComponent implements OnInit{
-  public userName!:string;
+  public user!:string;
   public editFlag:boolean=false;
-  public numberValue:string="";
+  public numberValue!:string;
+  public id:string="";
   public data:courseType={
       course_id:"",
       course_title:"",
@@ -26,13 +26,16 @@ export class NewCourseFormComponent implements OnInit{
   constructor(private router:Router,private route:ActivatedRoute,private _userService:UserServiceService,private cdr:ChangeDetectorRef) {
   }
   ngOnInit(): void {
-    this.userName=this._userService.sessionUser;
+    this.user=this._userService.sessionUser;
     console.log(this.route.params)
-    let id=this.route.snapshot.paramMap.get('id');
-    if(id){
-      let data=this._userService.getCourseById(id)
+    this.id=this.route.snapshot.paramMap?.get('id') || "";
+    if(this.id){
+      let data=this._userService.getCourseById(this.id)
       console.log("edited data:",data);
-      if(data) this.newCourseForm.setValue(data);
+      if(data){
+        this.newCourseForm.setValue(data);
+        this.editFlag=true;
+      }
       console.warn("edited data in form ",this.newCourseForm.value)
     }
     this.numberValue=this.newCourseForm.value.course_duration;
@@ -49,27 +52,31 @@ export class NewCourseFormComponent implements OnInit{
 
   getRand(){ return new Date().getTime().toString() + Math.floor(Math.random()*100); }
 
-  addCourseToUser(){
-    const active_user=this._userService.getUsers().find(user=>user.email.match(this.userName))
+  addCourseToUser=()=>{
     if(!this.editFlag){
       let newCourse={
         ...this.newCourseForm.value,
         course_id:this.getRand()
       }
-      console.log(newCourse)
-      active_user?.courses.push(newCourse);
+      this._userService.addCourse(newCourse);
       alert("course added! goto courses to view!");
     }
     else{
-      const userCourse=active_user?.courses.find((course:courseType)=>course.course_id===this.data.course_id);
-      Object.assign(userCourse,this.newCourseForm.value);
+      // let data=this._userService.getCourseById(this.id || "")
+      // Object.assign(data,this.newCourseForm.value);
+      this._userService.updateCourseById(this.newCourseForm.value)
       this.cancelCourse();
     }
   }
 
   cancelCourse(){
     this.newCourseForm.reset();
-    this.router.navigate(['../../courses'],{relativeTo:this.route});
+    if(!this.editFlag){
+      this.router.navigate(['../courses'],{relativeTo:this.route});
+    }
+    else{
+      this.router.navigate(['../../courses'],{relativeTo:this.route});
+    }
   }
 
 

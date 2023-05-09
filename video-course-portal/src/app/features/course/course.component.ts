@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { courseType } from 'src/app/core/models/userType';
+
 
 @Component({
   selector: 'app-course',
@@ -14,7 +16,7 @@ export class CourseComponent implements OnInit{
   @Input() public deleteCourse!:(course:courseType)=>void;
   public user!:string; 
   public active_user!:any;
-  constructor(private router:Router,private cdr:ChangeDetectorRef) {
+  constructor(private router:Router,private cdr:ChangeDetectorRef,private modalService: NgbModal) {
     
   }
   ngOnInit(): void {
@@ -23,5 +25,15 @@ export class CourseComponent implements OnInit{
 
   renderCourseItem(){
     console.log('course item rerender');
+  }
+
+  open(content:any){
+    console.log('open modal clicked')
+    this.modalService.open(content, { centered: true, backdropClass: 'modal-backdrop-dark' });
+  }
+
+  onDelete(){
+    this.deleteCourse(this.course);
+    this.modalService.dismissAll();
   }
 }

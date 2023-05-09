@@ -1,6 +1,6 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { userMockData } from '../../data/userMockData';
-import { UserType, courseType } from '../../models/userType';
+import { courseType } from '../../models/userType';
 
 @Injectable({
   providedIn: 'root'
@@ -38,11 +38,29 @@ export class UserServiceService {
     console.log(this.courses)
   }
 
+
   getCourseById(id:string){
-    return this.courses.find(course=>course.course_id===id);
+    return this.totalCourses.find(course=>course.course_id===id);
+  }
+
+  getCourseIdxById(id:string){
+    return this.totalCourses.findIndex(course=>course.course_id===id);
+  }
+
+  addCourse(course:any){
+    this.totalCourses=[
+      ...this.totalCourses,
+      course
+    ]
   }
 
   deleteCourseById(id:string){
-    this.courses=[...(this.courses.filter(course=>course.course_id!==id))]
+    this.totalCourses=[...(this.totalCourses.filter(course=>course.course_id!==id))];
+    this.courses=this.setInitialCourses();
+  }
+
+  updateCourseById(updatedCourse:any){
+    let idx=this.getCourseIdxById(updatedCourse.course_id);
+    this.courses[idx]={...updatedCourse};
   }
 }

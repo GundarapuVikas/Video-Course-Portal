@@ -41,3 +41,7 @@
 .my-btn-success{
     background-color: #64af30;
 }
+
+.load-card  a{
+    cursor: pointer;
+}
