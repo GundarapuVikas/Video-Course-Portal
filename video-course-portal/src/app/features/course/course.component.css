@@ -1,0 +1,71 @@
+.date-time-info{
+    gap: 10px;
+}
+
+button{
+    border-radius: 3px;
+    padding:0px 20px;
+    border:none;
+    color:white;
+}
+
+.my-btn-primary{
+    background-color: rgb(40, 176, 244);
+}
+
+.description{
+    width:80%;
+}
+
+.course-btns{
+    width: 20%;
+    height:40px;
+    justify-content: space-around;
+}
+
+.card-text,.card-title{
+    gap:15px;
+}
+
+.card-title > h3{
+    width:75%;
+}
+
+.card-title>.date-time-info{
+    width:25%;
+    justify-content: space-around;
+}
+
+.card{
+    margin:20px 0px;
+}
+
+i{
+    font-weight: lighter;
+    font-size:small;
+}
+
+.btn:hover{
+    color:white;
+}
+
+.my-btn-success{
+    background-color: #64af30;
+    
+}
+
+.modal-backdrop-dark {
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(4px);
+}
+
+
+.close{
+    color: black;
+    opacity: 1;
+    background: none;
+    font-size: 2rem;
+    margin-right:20px;
+    cursor: pointer;
+}
+  

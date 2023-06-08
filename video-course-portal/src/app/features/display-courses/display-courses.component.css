@@ -1,0 +1,47 @@
+.display-container{
+    margin:30px 60px;
+}
+
+.searchbar{
+    gap:10px;
+    width:30%;
+}
+
+.addCourse{
+    text-align: end;
+    margin-bottom: 10px;
+}
+
+.form-control,.btn{
+    border-radius: 3px;
+}
+.form-control:focus{
+    box-shadow: none;
+}
+.course-list-container{
+    margin-bottom: 20px;    
+}
+
+.no-course{
+    border:1px solid gray;
+    text-align: center;
+    padding:100px;
+    background-color: white;
+    margin-top:20%;
+}
+
+.btn{
+    color:white;
+    border:none;
+}
+.my-btn-primary{
+    background-color: rgb(40, 176, 244);
+}
+
+.my-btn-success{
+    background-color: #64af30;
+}
+
+.load-card  a{
+    cursor: pointer;
+}

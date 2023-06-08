@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-body">
+        <div class="card-title d-flex">
+            <h3>{{course.course_title}}</h3>
+            <div class="date-time-info d-flex">
+                <p><i class="fa fa-clock-o"></i>  {{course.course_duration | timePipe}}</p>
+                <p><i class="fa fa-calendar" aria-hidden="true"></i>  {{course.course_date | datePipe}}</p>
+            </div>
+        </div>
+        <div class="card-text d-flex">
+            <div class="description">
+                    {{course.course_description}}
+            </div>
+            <div class="course-btns d-flex">
+                <button class="btn my-btn-primary btn-sm" (click)="editCourse(course)"><i class="fa fa-edit"></i> Edit</button>
+                <button class="btn my-btn-primary btn-sm" (click)="open(myModal)"><i class="fa fa-trash" aria-hidden="true"></i> Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #myModal let-modal>
+  <div class="modal-header">
+    <h3 class="modal-title">Delete Course?</h3>
+    <span class="close" aria-hidden="true" (click)="modal.dismiss('cancel')">&times;</span>
+  </div>
+  <div class="modal-body">
+    <p class="text text-muted">Are you sure you want to delete {{course.course_title}}?</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="modal.dismiss('cancel')">Cancel</button>
+    <button type="button" class="btn my-btn-success" (click)="onDelete()">Yes, Delete</button>
+  </div>
+</ng-template>
+
+{{renderCourseItem()}}

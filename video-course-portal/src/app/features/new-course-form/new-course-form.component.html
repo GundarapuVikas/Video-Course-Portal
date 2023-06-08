@@ -1,0 +1,52 @@
+<div class="container my-5 addCourseCard">
+    <div class="row justify-content-center align-items-center">
+        <div class="col-sm-7">
+            <div class="card">
+                <h1>New Course</h1>
+                <form class="form" [formGroup]="newCourseForm">
+                    <div class="form-group mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="mb-2">Title : </label>
+                            <p>* required</p>
+                        </div>
+                        <input type="text" class="mb-2 title" id="courseTitle" formControlName="course_title" placeholder="Text input" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="d-flex justify-content-between">
+                            <label class="mb-2">Description : </label>
+                            <p>* required</p>
+                        </div>
+                        <textarea class="mb-2" rows="7" formControlName="course_description" placeholder="Add description" required></textarea>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="d-flex">
+                            <label class="mb-2 pe-3">Duration : </label>
+                            <p class="ps-5">* required</p>
+                        </div>
+                        <input class="mb-2 minutes" type="text"  formControlName="course_duration" required placeholder="minutes" [(ngModel)]="numberValue"/>
+                        <span class="hours">{{numberValue | timePipe}}</span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="d-flex">
+                            <label class="mb-2">Date : </label>
+                            <p class="ps-5">* required</p>
+                        </div>
+                        <input class="mb-2" type="date"  formControlName="course_date" placeholder="MM/DD/YYYY" required>
+                    </div>
+                    <div class="form-group mb-3">
+                        <div class="d-flex">
+                            <label class="mb-2 pe-4">Authors : </label>
+                            <p class="ps-5">* required</p>
+                        </div>
+                        <input class="mb-2" type="text"  formControlName="course_authors" placeholder="Start typing" required>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn cancel" (click)="cancelCourse()">Cancel</button>
+                        <button class="btn save" type="submit" (click)="addCourseToUser()">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{renderNewCourse()}}
